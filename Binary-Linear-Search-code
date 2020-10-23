@@ -1,0 +1,80 @@
+#include<stdio.h>
+
+int main()
+{
+    int counter, counter1, search, minimum, middle, maximum, swap, data[10];
+    system("color 71");
+
+    printf("Enter 10 data = ");
+    for(counter=0 ; counter<10 ; counter++){
+        scanf("%d", &data[counter]);
+    }
+    system("cls");
+    for (counter = 0 ; counter < 10; counter++)
+  {
+    for (counter1 = 0 ; counter1 < 10 - counter; counter1++)
+    {
+      if (data[counter1] > data[counter1+1])
+      {
+            swap = data[counter1];
+        data[counter1] = data[counter1+1];
+        data[counter1+1] = swap;
+      }
+    }
+  }
+
+    printf("Data = ");
+    for(counter=0 ; counter<10 ; counter++){
+        printf("%d ", data[counter]);
+    }
+
+    printf("\nSearch = ");
+    scanf("%d", &search);
+
+    system("cls");
+
+    ///Linear search
+    for(counter=0 ; counter<10 ; counter++){
+        if(search == data[counter]){
+            printf("\n%d has been found.", search);
+            break;
+        }
+    }
+    printf("\nLinear = %d",counter);
+
+    ///Binary search
+    minimum=0;
+    maximum=9;
+    middle=(minimum + maximum)/2;
+    counter1=1;
+    while(minimum <= maximum){
+        if(data[middle] < search){
+            minimum = middle + 1;
+        }
+        else if(data[middle] == search){
+            printf("\n%d has been found.", search);
+            break;
+        }
+        else{
+            maximum = middle - 1;
+        }
+        middle = (minimum + maximum)/2;
+        counter1= counter1 + 1;
+    }
+    printf("\nBinary = %d", counter1);
+    if (minimum > maximum)
+    printf("\n%d is not found.", search);
+
+    ///Which system is batter
+    if(counter < counter1){
+        printf("\nLinear search is batter.");
+    }
+    else if(counter1 < counter){
+        printf("\n Binary search is batter.");
+    }
+    else{
+        printf("\n Both are same.");
+    }
+
+    return 0;
+}
